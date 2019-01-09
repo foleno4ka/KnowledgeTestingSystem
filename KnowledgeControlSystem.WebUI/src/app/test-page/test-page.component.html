@@ -1,0 +1,81 @@
+<h3>{{isNew ? "New test" : "Edit test"}}</h3>
+<form class="col s12" (ngSubmit)="save()" novalidate>
+	<div class="row">
+		<div class="col s12">
+			<mz-input-container>
+				<input mz-input [label]="'Name:'" id="testName" name="testName" type="text" placeholder="Test name" [(ngModel)]="workingTest.Name" />
+			</mz-input-container>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s6">
+			<mz-input-container>
+				<input mz-input [label]="'Duration:'" id="testDuration" name="testDuration" type="number" placeholder="Duration (in minutes)"
+				 [(ngModel)]="workingTest.Duration" />
+			</mz-input-container>
+		</div>
+		<div class="col s6">
+			<mz-select-container>
+				<select mz-select [label]="'Category:'" [placeholder]="'Select category'" [(ngModel)]="workingTest.CategoryId" name="testCategory">
+					<option *ngFor="let category of categories" value="{{category.CategoryId}}" selected="CategoryId">{{category.CategoryName}}</option>
+				</select>
+			</mz-select-container>
+		</div>
+	</div>
+	<mz-collection>
+		<mz-collection-header>
+			<h5>Questions</h5>
+		</mz-collection-header>
+
+		<mz-collection-item *ngFor="let question of workingTest.Questions; let i=index">
+			<div>
+				<mz-input-container>
+					<input mz-input id="{{'testQuestionText_' + i}}" name="{{'testQuestionText_' + i}}" type="text" placeholder="Question Text"
+					 value="{{question.Text}}" [(ngModel)]="question.Text" />
+				</mz-input-container>
+				<div class="row">
+					<div class="col s6">
+						<mz-select-container>
+							<select mz-select [(ngModel)]="question.Type" [label]="'Type:'" name="{{'testQuestionType_' + i}}">
+								<option *ngFor="let type of questionTypes" selected="Type">{{type}}</option>
+							</select>
+						</mz-select-container>
+					</div>
+					<div class="col s6">
+						<mz-input-container>
+							<input mz-input [label]="'Score'" id="{{'testQuestionScore_' + i}}" name="{{'testQuestionScore_' + i}}" type="number"
+							 min="0" max="5" step="1" value="0" [(ngModel)]="question.Score">
+						</mz-input-container>
+					</div>
+				</div>
+				<div>Answers
+					<div *ngFor="let answer of question.Answers; let j=index">
+						<div>
+							<div class="row">
+								<div class="col s9">
+									<mz-input-container>
+										<input mz-input id="{{'testQuestionAnswerText_' + i + '_' + j}}" name="{{'testQuestionAnswerText_' + i + '_' + j}}"
+										 type="text" placeholder="Answer Text" [(ngModel)]="answer.Text" />
+									</mz-input-container>
+								</div>
+								<div class="col s3">
+									<mz-checkbox-container>
+										<input mz-checkbox [checked]="answer.Correct" [label]="'Correct'" id="{{'testQuestionAnswerIsCorrect_' + i + '_' + j}}"
+										 name="{{'testQuestionAnswerIsCorrect_' + i + '_' + j}}" type="checkbox" [(ngModel)]="answer.Correct"
+										 (change)="isCorrectChanged($event, i, j)">
+									</mz-checkbox-container>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button mz-button (click)="addAnswer(i)" type="button">
+					Add answer
+				</button>
+			</div>
+		</mz-collection-item>
+		<button mz-button (click)="addQuestion()" type="button">Add new question</button>
+	</mz-collection>
+
+	<button mz-button type="submit">Save</button>
+</form>

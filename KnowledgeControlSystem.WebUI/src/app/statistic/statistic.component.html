@@ -1,0 +1,5 @@
+<div class="row" *ngIf="testStatistic">
+  <p>Count passed tests: {{testStatistic.PassedTestCount}} </p>
+  <p>Average time: {{testStatistic.AvgTimeSeconds}} seconds</p>
+  <p>Average score: {{testStatistic.AvgScorePercent}}%</p>
+</div>
