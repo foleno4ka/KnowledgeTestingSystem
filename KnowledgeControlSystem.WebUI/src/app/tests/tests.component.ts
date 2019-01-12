@@ -4,6 +4,7 @@ import { UserService } from '../shared/user.service';
 import { User } from '../dto/user.model';
 import { TestService } from '../services/test.service';
 import { Test } from '../dto/test.model';
+import { UserInfoService } from '../shared/user-info.service';
 
 @Component({
   selector: 'tests',
@@ -13,18 +14,13 @@ import { Test } from '../dto/test.model';
 export class TestsComponent implements OnInit {
   tests: Test[];
 
-  constructor(private router: Router, private userService: UserService, private testService: TestService) { }
+  constructor(private router: Router, private userInfoService: UserInfoService, private testService: TestService) { }
 
   ngOnInit() {
     this.testService.getTests().subscribe(data => {
       this.tests = data
     });
   }
-
-  // Logout() {
-  //   localStorage.removeItem('userToken');
-  //   this.router.navigate(['/login']);
-  // }  
 
   deleteTest(idToDelete: number) {
     this.testService.deleteTest(idToDelete).subscribe(() => {

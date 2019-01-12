@@ -6,12 +6,12 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
+using KnowledgeControlSystem.Common;
 using KnowledgeControlSystem.WebAPІ.Infrastructure;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    //[AllowAnonymous]
     [Authorize]
     public class TestsController : ApiController
     {
@@ -24,7 +24,6 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
 
         [Route("api/Tests/{id}")]
         [HttpGet]
-        [Authorize]
         public HttpResponseMessage GetTest(int id)
         {
             TestDTO test = _testService.Get(id);
@@ -44,7 +43,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         }
 
         [Route("api/Tests/{id:int}")]
-        //[Authorise(Roles="Admin")]
+        [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
         [HttpPut]
         public HttpResponseMessage PutTest(int id, TestDTO changedTest)
         {
@@ -55,7 +54,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         }
 
         [Route("api/Tests")]
-        //[Authorise(Roles="Admin")]
+        [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
         [HttpPost]
         public HttpResponseMessage PostTest([FromBody] TestDTO addedTest)
         {
@@ -64,7 +63,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         }
 
         [Route("api/Tests/{id}")]
-        //[Authorize(Roles="Admin")]
+        [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
         [HttpDelete]
         public HttpResponseMessage DeleteTest(int id)
         {
@@ -73,7 +72,6 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [Route("api/Tests/{testId}/Start")]
         public HttpResponseMessage StartTest(int testId)
         {
@@ -83,7 +81,6 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [Route("api/Tests/{testId}/Finish")]
         public HttpResponseMessage FinishTest(int testId, Dictionary<int, int[]> userAnswers)
         {

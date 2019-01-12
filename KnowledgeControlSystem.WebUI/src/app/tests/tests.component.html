@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col s12">
-    <button mz-button type="button" routerLink="/tests/new" routerLinkActive="active" class="right">Create Test</button>
+    <button mz-button type="button" routerLink="/tests/new" routerLinkActive="active" class="right" *ngIf="userInfoService.isInRole(['Admin', 'Moderator'])">Create Test</button>
   </div>
 </div>
 <div class="row">
@@ -13,10 +13,10 @@
             <span class="left-align">{{test.Name}}</span>
           </div>
           <div class="col s9">
-            <button mz-button type="button" (click)="deleteTest(test.Id)" class="right tests-list-button">
+            <button mz-button type="button" (click)="deleteTest(test.Id)" *ngIf="userInfoService.isInRole(['Admin', 'Moderator'])" class="right tests-list-button">
               Remove
             </button>
-            <button mz-button type="button" routerLink="{{'/tests/' + test.Id}}" class="right tests-list-button">
+            <button mz-button type="button" routerLink="{{'/tests/' + test.Id}}" class="right tests-list-button" *ngIf="userInfoService.isInRole(['Admin', 'Moderator'])">
               Edit
             </button>
             <button mz-button type="button" routerLink="{{'/tests/' + test.Id + '/pass'}}" class="right tests-list-button">

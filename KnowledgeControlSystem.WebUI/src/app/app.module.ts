@@ -25,6 +25,7 @@ import { MzBadgeModule, MzValidationModule, MzNavbarModule, MzButtonModule, MzSe
 import { TestResultService } from './services/testResult.service';
 import { UserListComponent } from './list/userlist.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import { UserInfoService } from './shared/user-info.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { StatisticComponent } from './statistic/statistic.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, CategoryService, AuthGuard, TestService, TestResultService,
+  providers: [UserService, UserInfoService, CategoryService, AuthGuard, TestService, TestResultService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

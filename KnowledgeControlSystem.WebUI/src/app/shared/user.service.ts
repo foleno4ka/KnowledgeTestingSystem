@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { User } from '../dto/user.model';
 import { Router } from '@angular/router';
 import { NO_AUTH_HEADER } from '../auth/auth.interceptor';
+import { TokenDto } from '../dto/token-dto.model';
 
 @Injectable()
 export class UserService {
@@ -25,14 +26,14 @@ export class UserService {
         return this.http.post(this.rootUrl + '/api/User/Register', body, { headers: reqHeader });
     }
 
-    userAuthentication(userName, password) {
+    userAuthentication(userName, password): Observable<TokenDto> {
         var data = "username=" + userName + "&password=" + password + "&grant_type=password";
         var requestHeader = new HttpHeaders(
             {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 [NO_AUTH_HEADER]: 'True'
             });
-        return this.http.post(this.rootUrl + '/token', data, { headers: requestHeader });
+        return this.http.post<TokenDto>(this.rootUrl + '/token', data, { headers: requestHeader });
     }
 
     getCurrentUser(): Observable<User> {
@@ -96,6 +97,7 @@ export class UserService {
             })
             .catch(this.handleError);
     }
+
     handleError(error) {
         return Promise.reject(error.message || error);
     }

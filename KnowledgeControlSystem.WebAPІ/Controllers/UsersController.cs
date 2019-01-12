@@ -12,7 +12,6 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize(Roles = KnowledgeRoles.Admin)]
-    [AllowAnonymous]
     public class UsersController : ApiController
     {
         private readonly IUserService _userService;

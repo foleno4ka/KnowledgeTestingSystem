@@ -104,8 +104,11 @@ export class TestService {
     return this.http.get(`http://localhost:56607/api/TestStatistics`, this.getOptions()).pipe()
   }
 
-  getTestResults(): Observable<TestResult[]> {
-    return this.http.get<TestResult[]>(`${this.rootUrl}`, this.getOptions()).pipe();
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    }
   }
 
   private getOptions() {
@@ -113,13 +116,6 @@ export class TestService {
     return {
       headers: header
     };
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    }
   }
 
 }
