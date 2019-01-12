@@ -9,10 +9,8 @@ namespace KnowledgeControlSystem.BLL.Interfaces
     {
         IEnumerable<T> GetAll();
         T Get(int id);
-        T GetByName(string name);
         void Create(T obj);
         void Update(T dto);
         void Delete(int obj);
-        IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
     }
 }

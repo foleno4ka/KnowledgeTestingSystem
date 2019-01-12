@@ -104,6 +104,7 @@
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\KnowledgeUnitOfWork.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\TestRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -40,11 +40,6 @@ namespace KnowledgeControlSystem.BLL.Services
             _unitOfWork.Save();
         }
 
-        public IEnumerable<RoleDTO> FindBy(Expression<Func<RoleDTO, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
         public RoleDTO Get(int id)
         {
            return _mapper.Map<RoleDTO>(_unitOfWork.Roles.Get(id));

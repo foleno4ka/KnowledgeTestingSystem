@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using KnowledgeControlSystem.BLL.DTOs;
@@ -18,12 +16,10 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
     public class TestsController : ApiController
     {
         private readonly ITestService _testService;
-        private readonly IService<TestResultDTO> _testResultService;
 
-        public TestsController(ITestService testService, IService<TestResultDTO> testResultService)
+        public TestsController(ITestService testService)
         {
             _testService = testService;
-            _testResultService = testResultService;
         }
 
         [Route("api/Tests/{id}")]
@@ -35,17 +31,6 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             if (test == null)
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Test not found");
             return Request.CreateResponse(HttpStatusCode.OK, test);
-        }
-
-        [Route("api/Tests/TestNames")]
-        [HttpGet]
-        [Authorize]
-        public HttpResponseMessage GetTestNames()
-        {
-            IEnumerable<string> testNames = _testService.GetAll().Select(test => test.Name);
-            if (testNames.Any())
-                return Request.CreateResponse(HttpStatusCode.OK, testNames);
-            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Tests not found");
         }
 
         [Route("api/Tests")]
@@ -66,7 +51,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             if (changedTest == null)
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bad request");
             _testService.Update(changedTest);
-            return Request.CreateErrorResponse(HttpStatusCode.NoContent, "Test updated");
+            return Request.CreateResponse(HttpStatusCode.NoContent, "Test updated");
         }
 
         [Route("api/Tests")]
@@ -103,7 +88,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         public HttpResponseMessage FinishTest(int testId, Dictionary<int, int[]> userAnswers)
         {
             int userId = ControllerHelper.GetCurrentUserId(User);
-            TestResultDTO testResult= _testService.FinishTest(testId, userId, userAnswers);
+            TestResultDTO testResult = _testService.FinishTest(testId, userId, userAnswers);
             return Request.CreateResponse(HttpStatusCode.OK, testResult);
         }
     }

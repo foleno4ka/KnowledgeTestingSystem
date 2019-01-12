@@ -8,7 +8,7 @@ using KnowledgeControlSystem.DAL.Repositories;
 
 namespace KnowledgeControlSystem.BLL.Autofac
 {
-    public class BllConfigModule:Module
+    public class BllConfigModule : Module
     {
         public string Connection { get; set; }
 
@@ -20,11 +20,11 @@ namespace KnowledgeControlSystem.BLL.Autofac
             });
             builder.RegisterType(typeof(StatisticService)).As(typeof(IStatisticService));
             builder.RegisterType(typeof(TestService)).As(typeof(ITestService));
-            builder.RegisterType(typeof(TestResultService)).As(typeof(IService<TestResultDTO>));
+            builder.RegisterType(typeof(TestResultService)).As(typeof(ITestResultService));
             builder.RegisterType(typeof(CategoryService)).As(typeof(IService<CategoryDTO>));
             builder.RegisterType(typeof(IRoleService)).As(typeof(IService<RoleDTO>));
             builder.RegisterType(typeof(UserService)).As(typeof(IUserService));
-            
+
 
             builder.RegisterType(typeof(KnowledgeUnitOfWork)).As(typeof(IUnitOfWork)).InstancePerLifetimeScope();
             base.Load(builder);

@@ -14,7 +14,7 @@ namespace KnowledgeControlSystem.DAL.Autofac
         {
             builder.RegisterType(typeof(KnowledgeDBContext)).AsSelf().WithParameter("connection", this.Connection).InstancePerLifetimeScope();
 
-            builder.RegisterType(typeof(GenericRepository<TestEntity>)).As(typeof(IGenericRepository<TestEntity>));
+            builder.RegisterType(typeof(TestRepository)).As(typeof(GenericRepository<TestEntity>));
             builder.RegisterType(typeof(GenericRepository<QuestionEntity>)).As(typeof(IGenericRepository<QuestionEntity>));
             builder.RegisterType(typeof(GenericRepository<AnswerEntity>)).As(typeof(IGenericRepository<AnswerEntity>));
             builder.RegisterType(typeof(UserRepository)).As(typeof(IUserRepository));

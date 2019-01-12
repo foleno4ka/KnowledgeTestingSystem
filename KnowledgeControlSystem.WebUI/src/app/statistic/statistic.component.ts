@@ -12,11 +12,15 @@ import { TestResult } from '../dto/testResult.model';
 export class StatisticComponent implements OnInit {
 
   testStatistic: TestStatistic;
+  testResults: TestResult[];
   constructor(private testResultService: TestResultService, private testService: TestService) { }
 
   ngOnInit() {
     this.testService.getTestResultStatics().subscribe((data: any) => {
       this.testStatistic = data;
+    });
+    this.testResultService.getTestResults().subscribe((data: TestResult[]) => {
+      this.testResults = data;
     });
   }
 

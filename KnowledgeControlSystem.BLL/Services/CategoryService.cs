@@ -39,11 +39,6 @@ namespace KnowledgeControlSystem.BLL.Services
             _unitOfWork.Save();
         }
 
-        public IEnumerable<CategoryDTO> FindBy(Expression<Func<CategoryDTO, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
         public CategoryDTO Get(int id)
         {
             return _mapper.Map<CategoryDTO>(_unitOfWork.Categories.Get(id));
@@ -52,11 +47,6 @@ namespace KnowledgeControlSystem.BLL.Services
         public IEnumerable<CategoryDTO> GetAll()
         {
             return _unitOfWork.Categories.GetAll().Select(category => _mapper.Map<CategoryDTO>(category));
-        }
-
-        public CategoryDTO GetByName(string name)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(CategoryDTO dto)

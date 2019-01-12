@@ -96,6 +96,7 @@
     <Compile Include="Infrastructure\OperationDetails.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IStatisticService.cs" />
+    <Compile Include="Interfaces\ITestResultService.cs" />
     <Compile Include="Interfaces\ITestService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

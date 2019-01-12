@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using KnowledgeControlSystem.BLL.DTOs;
@@ -11,15 +9,16 @@ using KnowledgeControlSystem.DAL.Interfaces;
 
 namespace KnowledgeControlSystem.BLL.Services
 {
-    public class TestResultService : IService<TestResultDTO>
+    public class TestResultService : ITestResultService
     {
-        IUnitOfWork _unitOfWork;
-        IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public TestResultService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper = new MapperConfiguration(cfg => {
+            _mapper = new MapperConfiguration(cfg =>
+            {
                 cfg.AddExpressionMapping();
                 cfg.CreateMap<TestResultEntity, TestResultDTO>();
                 cfg.CreateMap<TestResultDTO, TestResultEntity>();
@@ -38,10 +37,10 @@ namespace KnowledgeControlSystem.BLL.Services
             _unitOfWork.Save();
         }
 
-        public IEnumerable<TestResultDTO> FindBy(Expression<Func<TestResultDTO, bool>> predicate)
+        public List<TestResultDTO> FindByUser(int userId)
         {
-            throw new NotImplementedException();
-            //return _unitOfWork.TestResults.FindBy(predicate);
+            return _unitOfWork.TestResults.FindBy(test => test.UserId == userId)
+                .Select(testResult => _mapper.Map<TestResultDTO>(testResult)).ToList();
         }
 
         public TestResultDTO Get(int id)
@@ -52,11 +51,6 @@ namespace KnowledgeControlSystem.BLL.Services
         public IEnumerable<TestResultDTO> GetAll()
         {
             return _unitOfWork.TestResults.GetAll().Select(testResult => _mapper.Map<TestResultDTO>(testResult));
-        }
-
-        public TestResultDTO GetByName(string name)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(TestResultDTO dto)

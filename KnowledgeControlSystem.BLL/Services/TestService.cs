@@ -39,8 +39,8 @@ namespace KnowledgeControlSystem.BLL.Services
                 cfg.CreateMap<TestDTO, TestEntity>()
                     .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Questions));
 
-                cfg.CreateMap<QuestionDTO, QuestionEntity>().ForMember(dest => dest.Test, opt => opt.Ignore());
-
+                cfg.CreateMap<QuestionDTO, QuestionEntity>()
+                    .ForMember(dest => dest.Test, opt => opt.Ignore());
                 cfg.CreateMap<AnswerDTO, AnswerEntity>().ForMember(dest => dest.Question, opt => opt.Ignore());
             }).CreateMapper();
             _userMapper = new MapperConfiguration(cfg =>
@@ -90,14 +90,10 @@ namespace KnowledgeControlSystem.BLL.Services
         {
             if (_unitOfWork.TestResults.FindBy(entity => entity.TestId == dto.Id && entity.EndTime == DateTime.MinValue).Any())
                 throw new TestInUseException();
-            TestEntity test = _unitOfWork.Tests.Get(dto.Id);
-            _unitOfWork.Tests.Update(_mapper.Map(dto, test));
+            //TestEntity test = _unitOfWork.Tests.Get(dto.Id);
+            //_unitOfWork.Tests.Update(_mapper.Map<TestDTO, TestEntity>(dto, test));
+            _unitOfWork.Tests.Update(_mapper.Map<TestEntity>(dto));
             _unitOfWork.Save();
-        }
-
-        public IEnumerable<TestDTO> FindBy(Expression<Func<TestDTO, bool>> predicate)
-        {
-            throw new NotImplementedException();
         }
 
         public DateTime StartTest(int testId, int userId)

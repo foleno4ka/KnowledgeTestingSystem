@@ -16,6 +16,16 @@ export class TestResultService {
         return this.http.post<TestResult>(`${this.rootUrl}/${testResultId}`, userAnswers, { headers: header }).pipe();
     }
 
+    getTestResults(): Observable<TestResult[]> {
+        return this.http.get<TestResult[]>(`${this.rootUrl}`, this.getOptions()).pipe();
+    }
+
+    private getOptions() {
+        const header = new HttpHeaders().set('Authorization', 'Bearer' + localStorage.getItem('userToken'));
+        return {
+            headers: header
+        };
+    }
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
