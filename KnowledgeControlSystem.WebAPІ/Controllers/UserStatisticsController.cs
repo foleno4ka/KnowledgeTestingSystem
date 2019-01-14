@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -26,6 +27,15 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         {
             int userId = ControllerHelper.GetCurrentUserId(User);
             TestStatisticDTO testStatistics = _statisticService.GetStatistics(userId);
+            return Request.CreateResponse(HttpStatusCode.OK, testStatistics);
+        }
+
+        [Route("api/AllTestStatistics")]
+        [HttpGet]
+        [Authorize]
+        public HttpResponseMessage GetAllTestStatistics()
+        {
+            IEnumerable<TestStatisticDTO> testStatistics = _statisticService.GetAllUserStatistics();
             return Request.CreateResponse(HttpStatusCode.OK, testStatistics);
         }
     }

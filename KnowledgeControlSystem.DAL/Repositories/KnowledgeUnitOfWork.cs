@@ -13,7 +13,8 @@ namespace KnowledgeControlSystem.DAL.Repositories
         GenericRepository<CategoryEntity> _categories;
         UserRepository _users;
         RoleRepository _roles;
-
+        private bool _isDisposed;
+        
         public IGenericRepository<TestEntity> Tests => _tests ?? (_tests = new TestRepository(_context));
         public IGenericRepository<TestResultEntity> TestResults => _testResults ?? (_testResults = new GenericRepository<TestResultEntity>(_context));
         public IRoleRepository Roles => _roles ?? (_roles = new RoleRepository(_context));
@@ -30,24 +31,23 @@ namespace KnowledgeControlSystem.DAL.Repositories
             _context.SaveChanges();
         }
 
-        private bool _disposed;
-
-        public virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (!_isDisposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
-                _disposed = true;
             }
+
+            _isDisposed = true;
         }
 
         public void Dispose()
         {
             Dispose(true);
-                GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using KnowledgeControlSystem.BLL.DTOs;
@@ -80,6 +79,21 @@ namespace KnowledgeControlSystem.BLL.Services
         public IdentityResult AddToUserRoles(int userId, IEnumerable<string> roles)
         {
             var result = _unitOfWork.Users.AddToRoles(userId, roles);
+            if (result.Succeeded)
+                _unitOfWork.Save();
+            return result;
+        }
+        
+        public IdentityResult AddToUserRoles(int userId, string role)
+        {
+            var result = _unitOfWork.Users.AddToRoles(userId, role);
+            if (result.Succeeded)
+                _unitOfWork.Save();
+            return result;
+        }
+        public IdentityResult DeleteFromRole(int userId, string role)
+        {
+            var result = _unitOfWork.Users.RemoveFromRole(userId, role);
             if (result.Succeeded)
                 _unitOfWork.Save();
             return result;

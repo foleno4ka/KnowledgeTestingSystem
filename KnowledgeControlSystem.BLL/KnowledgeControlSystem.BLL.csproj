@@ -112,6 +112,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KnowledgeControlSystem.Common\KnowledgeControlSystem.Common.csproj">
+      <Project>{6ba10e01-f1f5-43b4-ad1e-c0f9ad5e18d1}</Project>
+      <Name>KnowledgeControlSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KnowledgeControlSystem.DAL\KnowledgeControlSystem.DAL.csproj">
       <Project>{98354AC3-ADF4-4D3A-BB99-8B8E7CA575C1}</Project>
       <Name>KnowledgeControlSystem.DAL</Name>

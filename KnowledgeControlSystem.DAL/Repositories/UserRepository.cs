@@ -22,6 +22,12 @@ namespace KnowledgeControlSystem.DAL.Repositories
         public IdentityResult AddToRoles(int userId, IEnumerable<string> roles) =>
             _userManager.AddToRoles(userId, roles.ToArray());
 
+        public IdentityResult AddToRoles(int userId, string role) =>
+            _userManager.AddToRole(userId, role);
+
+        public IdentityResult RemoveFromRole(int userId, string role) =>
+            _userManager.RemoveFromRole(userId, role);
+        
         public IdentityResult Create(IdentityUserEntity user) => _userManager.Create(user);
 
         public IdentityResult Create(IdentityUserEntity user, string password) => _userManager.Create(user, password);

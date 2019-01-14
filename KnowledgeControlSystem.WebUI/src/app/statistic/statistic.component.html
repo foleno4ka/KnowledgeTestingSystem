@@ -1,5 +1,49 @@
-<div class="row" *ngIf="testStatistic">
+<h4 class="center">Test statistics:</h4>
+<div class="row center" *ngIf="testStatistic">
   <p>Count passed tests: {{testStatistic.PassedTestCount}} </p>
   <p>Average time: {{testStatistic.AvgTimeSeconds}} seconds</p>
   <p>Average score: {{testStatistic.AvgScorePercent}}%</p>
+</div>
+<div class="container">
+  <table *ngIf="allUserTestStatistics">
+    <thead>
+      <tr>
+        <th>User name</th>
+        <th>Count passed tests</th>
+        <th>Average score</th>
+        <th>Average time </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let userStatistic of allUserTestStatistics; let testStaisticIndex = index">
+        <td class="center">{{userStatistic.UserName}}</td>
+        <td>{{userStatistic.PassedTestCount}}</td>
+        <td>{{userStatistic.AvgScorePercent}}%</td>
+        <td class="center">{{userStatistic.AvgTimeSeconds}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <table *ngIf="testResults">
+    <thead>
+      <tr>
+        <th>Test name</th>
+        <th>Pass date</th>
+        <th>Pass time</th>
+        <th>Score/max score</th>
+        <th  class="center">Duration/max duration<br/>(in minutes)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let testResult of testResults; let testIndex = index">
+        <td class="center">{{testResult.TestName}}</td>
+        <td>{{testResult.EndTime}}</td>
+        <td>{{testResult.PassTime}}</td>
+        <td class="center">{{testResult.Score}}/{{testResult.TotalScore}}</td>
+        <td class="center">{{testResult.Duration}}/{{testResult.MaxDuration}}
+      </tr>
+    </tbody>
+  </table>
 </div>

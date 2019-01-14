@@ -20,26 +20,13 @@ namespace KnowledgeControlSystem.DAL.Repositories
 
         public void Create(T obj)
         {
-            try
-            {
-                _dbSet.AddOrUpdate(obj);
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
+            _dbSet.AddOrUpdate(obj);
         }
 
         public void Remove(T obj)
         {
-            try
-            {
-                _dbSet.Remove(obj);
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
+           
+            _dbSet.Remove(obj);
         }
 
         public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)

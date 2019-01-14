@@ -13,14 +13,11 @@ export class UserService {
     readonly rootUrl = 'http://localhost:56607';
     constructor(private http: HttpClient, private router: Router) { }
 
-    registerUser(user: User, roles: string[]) {
+    registerUser(user: User) {
         const body = {
             UserName: user.UserName,
             Password: user.Password,
             Email: user.Email,
-            FirstName: user.FirstName,
-            LastName: user.LastName,
-            Roles: roles
         }
         var reqHeader = new HttpHeaders({ [NO_AUTH_HEADER]: 'True' });
         return this.http.post(this.rootUrl + '/api/User/Register', body, { headers: reqHeader });

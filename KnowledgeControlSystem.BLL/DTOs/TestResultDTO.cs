@@ -6,6 +6,8 @@ namespace KnowledgeControlSystem.BLL.DTOs
     {
         public int Id { get; set; }
         public int TestId { get; set; }
+        public string TestName { get; set; }
+        public int MaxDuration { get; set; }
         public int UserId { get; set; }
         public int Score { get; set; }
         public int TotalScore { get; set; }

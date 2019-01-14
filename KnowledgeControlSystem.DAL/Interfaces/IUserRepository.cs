@@ -10,6 +10,8 @@ namespace KnowledgeControlSystem.DAL.Interfaces
         IdentityResult Create(IdentityUserEntity user);
         IdentityResult Delete(IdentityUserEntity user);
         IdentityResult AddToRoles(int userId, IEnumerable<string> roles);
+        IdentityResult AddToRoles(int userId, string role);
+        IdentityResult RemoveFromRole(int userId, string role);
         IdentityResult Create(IdentityUserEntity user, string password);
         ClaimsIdentity CreateIdentity(IdentityUserEntity user, string authenticationType);
         IdentityResult Update(IdentityUserEntity user);

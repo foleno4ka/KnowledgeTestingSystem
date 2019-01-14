@@ -1,49 +1,40 @@
-<form class="col s12 white" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
+<form class="col s12 white" #userRegistrationForm="ngForm" (ngSubmit)="userRegistrationForm.form.valid && OnSubmit(userRegistrationForm)"
+  novalidate>
   <div class="row">
-    <div class="input-field col s6">
-      <input class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required>
-      <label data-error="Required field!">UserName</label>
+    <div class="form-group input-field col s12">
+      <input class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required
+        minlength="5">
+      <label [attr.data-error]="!UserName.valid || (UserName.pristine && !userRegistrationForm.submitted)?'Username is required (minimum 5
+      characters)':''">Username</label>
+      <!-- <label data-error="Required field!">UserName</label> -->
     </div>
-    <div class="input-field col s6">
-      <input class="validate" type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" required
-        minlength="3">
-      <label [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">Password</label>
+    <div class="input-field col s12">
+      <input class="validate form-control" type="password" name="Password"  [(ngModel)]="user.Password" required
+         minlength="6" validateEqual="ConfirmPassword" reverse="true" #Password="ngModel">
+        <label [attr.data-error]="Password.valid ||  
+        (Password.pristine && !userRegistrationForm.submitted)?'Minimum password length 6 chars':''">
+        Password
+    </label>
     </div>
-    <div class="input-field col s6">
-      <input class="validate" type="password" name="PasswordConfirmation" #PasswordCOnfirmation="ngModel" [(ngModel)]="PasswordConfirmation"
-        required minlength="3">
-      <label [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">Confirm
-        password</label>
+    <div class="input-field col s12">
+      <input class="validate form-control" type="password" name="ConfirmPassword"  [(ngModel)]="user.ConfirmPassword"
+         required validateEqual="Password" reverse="false"  #ConfirmPassword="ngModel">
+         <label [attr.data-error]="user.ConfirmPassword.valid ||  
+         ( ConfirmPassword.pristine && !userRegistrationForm.submitted)?'Password mismatches':''">
+         Confirm Password
+    </label>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s12">
-      <input class="validate" type="text" name="Email" #Email="ngModel" [(ngModel)]="user.Email" [pattern]="emailPattern">
+      <input class="validate" type="email" name="Email" #Email="ngModel" [(ngModel)]="user.Email" [pattern]="emailPattern"
+        required >
       <label data-error="Invalid email!">Email</label>
     </div>
   </div>
   <div class="row">
-    <div class="input-field col s6">
-      <input type="text" name="FirstName" #FirstName="ngModel" [(ngModel)]="user.FirstName">
-      <label>First Name</label>
-    </div>
-    <div class="input-field col s6">
-      <input type="text" name="LastName" #LastName="ngModel" [(ngModel)]="user.LastName">
-      <label>Last Name</label>
-    </div>
-  </div>
-  <div class="row" *ngIf="roles">
-    <ul>
-      <li *ngFor="let role of roles;let i = index">
-        <input type="checkbox" [id]="'roles-'+i" value="{{role.id}}" [checked]="role.selected" (change)="updateSelectedRoles(i)"/>
-        <label [for]="'roles-'+i">{{role.Name}}</label>
-          
-      </li>
-    </ul>
-  </div>
-  <div class="row">
     <div class="input-field col s12">
-      <button [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Submit</button>
+      <button  [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Submit</button>
     </div>
   </div>
 </form>

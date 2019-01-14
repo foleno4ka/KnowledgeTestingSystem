@@ -20,7 +20,9 @@ namespace KnowledgeControlSystem.BLL.Services
             _mapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddExpressionMapping();
-                cfg.CreateMap<TestResultEntity, TestResultDTO>();
+                cfg.CreateMap<TestResultEntity, TestResultDTO>()
+                    .ForMember(dest => dest.TestName, opt => opt.MapFrom(src => src.Test.Name))
+                    .ForMember(dest => dest.MaxDuration, opt => opt.MapFrom(src => src.Test.Duration));
                 cfg.CreateMap<TestResultDTO, TestResultEntity>();
             }).CreateMapper();
         }

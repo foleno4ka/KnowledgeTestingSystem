@@ -200,13 +200,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ControllerHelper.cs" />
-    <Compile Include="Models\ExtendedTestStatistic.cs" />
-    <Compile Include="Models\ProfileViewModel.cs" />
-    <Compile Include="Models\QuestionVIewModel.cs" />
-    <Compile Include="Models\ResultViewModel.cs" />
-    <Compile Include="Models\RoleVIewModel.cs" />
-    <Compile Include="Models\TestDetailViewModel.cs" />
-    <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="WebApiStartup.cs" />

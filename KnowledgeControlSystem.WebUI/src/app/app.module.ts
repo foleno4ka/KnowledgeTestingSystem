@@ -26,6 +26,8 @@ import { TestResultService } from './services/testResult.service';
 import { UserListComponent } from './list/userlist.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { UserInfoService } from './shared/user-info.service';
+import { EqualValidator } from './helpers/register.validator';
+import { TestStatisticsService } from './services/test-statistics.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { UserInfoService } from './shared/user-info.service';
     TestPageComponent,
     TestSolveComponent,
     UserListComponent,
-    StatisticComponent
+    StatisticComponent, 
+    EqualValidator
   ],
   imports: [
     MzBadgeModule,
@@ -60,7 +63,7 @@ import { UserInfoService } from './shared/user-info.service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, UserInfoService, CategoryService, AuthGuard, TestService, TestResultService,
+  providers: [UserService, UserInfoService, CategoryService, AuthGuard, TestService, TestResultService, TestStatisticsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

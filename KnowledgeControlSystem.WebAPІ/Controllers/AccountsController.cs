@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
+using KnowledgeControlSystem.Common;
 using Microsoft.AspNet.Identity;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
@@ -11,7 +12,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
     [AllowAnonymous]
     public class AccountsController : ApiController
     {
-        IUserService _userService;
+        private readonly IUserService _userService;
 
         public AccountsController(IUserService userService)
         {
@@ -25,6 +26,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         {
             var result = _userService.Create(model);
             UserDTO user = _userService.GetByName(model.UserName);
+            model.Roles = new[]{ KnowledgeRoles.User};
             _userService.AddToUserRoles(user.Id, model.Roles);
             return result;
         }

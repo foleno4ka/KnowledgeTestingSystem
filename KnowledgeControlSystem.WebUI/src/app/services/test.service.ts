@@ -94,15 +94,6 @@ export class TestService {
       catchError(this.handleError('finished Test'))
     );
   }
-  // getTestResultStatics() {
-  //   return this.http.get(`${this.rootUrl}/testStatistics`, this.getOptions()).pipe(
-  //     tap((userStatistic: TestStatistic) => console.log(`calculated testStatistic`)),
-  //     catchError(this.handleError('calculated statistics')));
-  // }
-
-  public getTestResultStatics() {
-    return this.http.get(`http://localhost:56607/api/TestStatistics`, this.getOptions()).pipe()
-  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

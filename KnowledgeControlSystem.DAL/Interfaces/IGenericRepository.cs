@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace KnowledgeControlSystem.DAL.Interfaces
 {
-    public interface IGenericRepository<T> 
+    public interface IGenericRepository<T>
         where T : class
     {
         // TODO: change to IQueryable
