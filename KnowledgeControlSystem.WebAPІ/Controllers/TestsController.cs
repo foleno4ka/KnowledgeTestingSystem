@@ -11,8 +11,8 @@ using KnowledgeControlSystem.WebAPІ.Infrastructure;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize]
+    [RoutePrefix("api/Tests")]
     public class TestsController : ApiController
     {
         private readonly ITestService _testService;
@@ -22,17 +22,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             _testService = testService;
         }
 
-        [Route("api/Tests/{id}")]
-        [HttpGet]
-        public HttpResponseMessage GetTest(int id)
-        {
-            TestDTO test = _testService.Get(id);
-            if (test == null)
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Test not found");
-            return Request.CreateResponse(HttpStatusCode.OK, test);
-        }
-
-        [Route("api/Tests")]
+        [Route("")]
         [HttpGet]
         public HttpResponseMessage GetAll()
         {
@@ -42,18 +32,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, tests);
         }
 
-        [Route("api/Tests/{id:int}")]
-        [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
-        [HttpPut]
-        public HttpResponseMessage PutTest(int id, TestDTO changedTest)
-        {
-            if (changedTest == null)
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bad request");
-            _testService.Update(changedTest);
-            return Request.CreateResponse(HttpStatusCode.NoContent, "Test updated");
-        }
-
-        [Route("api/Tests")]
+        [Route("")]
         [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
         [HttpPost]
         public HttpResponseMessage PostTest([FromBody] TestDTO addedTest)
@@ -62,17 +41,38 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, "Product added");
         }
 
-        [Route("api/Tests/{id}")]
+        [Route("{testId}")]
+        [HttpGet]
+        public HttpResponseMessage GetTest(int testId)
+        {
+            TestDTO test = _testService.Get(testId);
+            if (test == null)
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Test not found");
+            return Request.CreateResponse(HttpStatusCode.OK, test);
+        }
+
+        [Route("{testId}")]
+        [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
+        [HttpPut]
+        public HttpResponseMessage PutTest(int testId, TestDTO changedTest)
+        {
+            if (changedTest == null)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Bad request");
+            _testService.Update(changedTest);
+            return Request.CreateResponse(HttpStatusCode.NoContent, "Test updated");
+        }
+
+        [Route("{testId}")]
         [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
         [HttpDelete]
-        public HttpResponseMessage DeleteTest(int id)
+        public HttpResponseMessage DeleteTest(int testId)
         {
-            _testService.Delete(id);
+            _testService.Delete(testId);
             return Request.CreateResponse(HttpStatusCode.NoContent, "Test deleted");
         }
 
         [HttpPost]
-        [Route("api/Tests/{testId}/Start")]
+        [Route("{testId}/Start")]
         public HttpResponseMessage StartTest(int testId)
         {
             int userId = ControllerHelper.GetCurrentUserId(User);
@@ -81,7 +81,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         }
 
         [HttpPost]
-        [Route("api/Tests/{testId}/Finish")]
+        [Route("{testId}/Finish")]
         public HttpResponseMessage FinishTest(int testId, Dictionary<int, int[]> userAnswers)
         {
             int userId = ControllerHelper.GetCurrentUserId(User);

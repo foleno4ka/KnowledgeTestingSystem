@@ -6,24 +6,25 @@ using KnowledgeControlSystem.BLL.Interfaces;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    //[AllowAnonymous]
+    [RoutePrefix("api/Categories")]
     [Authorize]
     public class CategoriesController : ApiController
     {
-        IService<CategoryDTO> _categoriesService;
+        private readonly IService<CategoryDTO> _categoriesService;
 
         public CategoriesController(IService<CategoryDTO> categoryService)
         {
             _categoriesService = categoryService;
         }
-        [Route("api/Categories")]
+
+        [Route("")]
         [HttpGet]
         public IEnumerable<CategoryDTO> GetCategories()
         {
             return _categoriesService.GetAll();
         }
-        [Route("api/Categories/{id}")]
+
+        [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetCategory(int id)
         {
@@ -32,6 +33,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
                 return NotFound();
             return Ok(category);
         }
+
         //[Route("")]
         ////[Authorise(Roles="Admin")]
         //[HttpPut]

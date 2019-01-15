@@ -35,7 +35,11 @@ namespace KnowledgeControlSystem.WebAPІ.Providers
                 var userRoles = _userService.GetRoles(user.Id);
                 foreach (string roleName in userRoles)
                     identity.AddClaim(new Claim(ClaimTypes.Role, roleName));
-                var additionalData = new AuthenticationProperties(new Dictionary<string, string> { { "role", JsonConvert.SerializeObject(userRoles) } });
+                var additionalData =
+                    new AuthenticationProperties(new Dictionary<string, string>
+                    {
+                        {"role", JsonConvert.SerializeObject(userRoles)}
+                    });
                 //identity.AddClaim(new Claim("Email", user.Email));
                 //identity.AddClaim(new Claim("FirstName", user.FirstName));
                 //identity.AddClaim(new Claim("LastName", user.LastName));
@@ -43,6 +47,7 @@ namespace KnowledgeControlSystem.WebAPІ.Providers
                 context.Validated(ticket);
             }
         }
+
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)

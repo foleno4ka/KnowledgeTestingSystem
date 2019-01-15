@@ -8,11 +8,11 @@ using KnowledgeControlSystem.BLL.Interfaces;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [AllowAnonymous]
     public class RolesController : ApiController
     {
         private readonly IService<RoleDTO> _roleService;
+
         public RolesController(IService<RoleDTO> roleService)
         {
             _roleService = roleService;
@@ -20,13 +20,13 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("api/GetAllRoles")]
+        [Route("api/Roles")]
         public HttpResponseMessage GetRoles()
         {
             var roles = _roleService.GetAll()
-                .Select(x => new { x.Id, x.Name })
+                .Select(x => new {x.Id, x.Name})
                 .ToList();
-            return this.Request.CreateResponse(HttpStatusCode.OK, roles);
+            return Request.CreateResponse(HttpStatusCode.OK, roles);
         }
     }
 }

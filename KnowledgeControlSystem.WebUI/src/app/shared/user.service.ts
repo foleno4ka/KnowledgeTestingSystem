@@ -20,7 +20,7 @@ export class UserService {
             Email: user.Email,
         }
         var reqHeader = new HttpHeaders({ [NO_AUTH_HEADER]: 'True' });
-        return this.http.post(this.rootUrl + '/api/User/Register', body, { headers: reqHeader });
+        return this.http.post(this.rootUrl + '/api/Users', body, { headers: reqHeader });
     }
 
     userAuthentication(userName, password): Observable<TokenDto> {
@@ -33,13 +33,9 @@ export class UserService {
         return this.http.post<TokenDto>(this.rootUrl + '/token', data, { headers: requestHeader });
     }
 
-    getCurrentUser(): Observable<User> {
-        return this.http.get<User>(this.rootUrl + '/api/CurrentUser');
-    }
-
     getAllRoles() {
         var header = new HttpHeaders({ 'No-Auth': 'True' });
-        return this.http.get(this.rootUrl + '/api/GetAllRoles', { headers: header });
+        return this.http.get(this.rootUrl + '/api/Roles', { headers: header });
     }
 
     private getOptions() {

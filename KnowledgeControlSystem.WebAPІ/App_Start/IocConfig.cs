@@ -12,13 +12,14 @@ namespace KnowledgeControlSystem.WebAPІ
     {
         public static void Configure()
         {
-                var builder = new ContainerBuilder();
-                builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-                builder.RegisterModule(new BllConfigModule() { Connection = "name=KnowledgeDBContext" });
-                builder.RegisterType<ApplicationOAuthProvider>().As<IOAuthAuthorizationServerProvider>().PropertiesAutowired();
-                var container = builder.Build();
-                var resolver = new AutofacWebApiDependencyResolver(container);
-                GlobalConfiguration.Configuration.DependencyResolver = resolver;
+            var builder = new ContainerBuilder();
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterModule(new BllConfigModule() {Connection = "name=KnowledgeDBContext"});
+            builder.RegisterType<ApplicationOAuthProvider>().As<IOAuthAuthorizationServerProvider>()
+                .PropertiesAutowired();
+            var container = builder.Build();
+            var resolver = new AutofacWebApiDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
     }
 }

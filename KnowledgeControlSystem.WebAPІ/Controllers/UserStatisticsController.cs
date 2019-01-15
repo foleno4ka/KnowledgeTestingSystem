@@ -2,14 +2,12 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
 using KnowledgeControlSystem.WebAPІ.Infrastructure;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize]
     public class TestStatisticsController : ApiController
     {

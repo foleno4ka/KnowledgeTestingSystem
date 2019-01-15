@@ -10,7 +10,6 @@ using KnowledgeControlSystem.WebAPІ.Infrastructure;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TestResultsController : ApiController
     {
         private readonly ITestResultService _testResultService;
@@ -28,7 +27,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             int userId = ControllerHelper.GetCurrentUserId(User);
             IEnumerable<TestResultDTO> testResults = _testResultService.FindByUser(userId);
             if (!testResults.Any())
-               return Request.CreateErrorResponse(HttpStatusCode.NotFound, "TestResults not found");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "TestResults not found");
             return Request.CreateResponse(HttpStatusCode.OK, testResults);
         }
     }
