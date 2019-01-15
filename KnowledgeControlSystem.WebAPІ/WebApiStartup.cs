@@ -9,13 +9,13 @@ namespace KnowledgeControlSystem.WebAPІ
 {
     public partial class WebApiStartup
     {
-      // IUserService _userService { get; set; }
-        
+        // IUserService _userService { get; set; }
+
         public void Configuration(IAppBuilder app)
-            {
+        {
             app.UseCors(CorsOptions.AllowAll);
-            IocConfig.Configuration();
-            ConfigurationAuth(app);
+            IocConfig.Configure();
+            ConfigureAuth(app);
         }
     }
 }

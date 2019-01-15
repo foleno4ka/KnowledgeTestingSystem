@@ -10,7 +10,7 @@ namespace KnowledgeControlSystem.WebAPІ
 {
     public static class IocConfig
     {
-        public static void Configuration()
+        public static void Configure()
         {
                 var builder = new ContainerBuilder();
                 builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

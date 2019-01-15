@@ -14,8 +14,6 @@ namespace KnowledgeControlSystem.WebAPІ
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });
-            //config.SuppressDefaultHostAuthentication();
-            //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Filters.Add(new AuthorizeAttribute());
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;
         }
