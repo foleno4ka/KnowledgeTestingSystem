@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { NO_AUTH_HEADER } from '../../auth/auth.interceptor';
 import { TokenDto } from '../dto/token-dto.model';
 import { GenericApiService } from './generic-api.service';
+import { Role } from '../dto/role.model';
 
 @Injectable()
 export class UserService extends GenericApiService {
@@ -36,10 +37,6 @@ export class UserService extends GenericApiService {
         return this.http.post<TokenDto>(this.rootUrl + '/token', data, { headers: requestHeader });
     }
 
-    getAllRoles() {
-        return this.http.get(this.rootUrl + '/api/Roles', this.getOptions()).toPromise();
-    }
-
     getUsers() {
         return this.http.get(`${this.rootUrl}/api/Users`, this.getOptions()).toPromise();
     }
@@ -58,6 +55,18 @@ export class UserService extends GenericApiService {
 
     update(user: User) {
         return this.http.put(`${this.rootUrl}/api/Users/${user.Id}/`, user).toPromise();
+    }
+
+    getAllRoles(): Promise<Role[]> {
+        return this.http.get<Role[]>(this.rootUrl + '/api/Roles', this.getOptions()).toPromise();
+    }
+
+    removeRole(userId: number, roleName: string) {
+        return this.http.delete(`${this.rootUrl}/api/Users/${userId}/Roles/${roleName}`, this.getOptions()).toPromise();
+    }
+
+    addRole(userId: number, roleName: string) {
+        return this.http.put(`${this.rootUrl}/api/Users/${userId}/Roles/${roleName}`, this.getOptions()).toPromise();
     }
 
 }

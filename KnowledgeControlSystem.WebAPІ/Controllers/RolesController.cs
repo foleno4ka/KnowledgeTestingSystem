@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
 using KnowledgeControlSystem.Common;
@@ -23,9 +23,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         [Route("api/Roles")]
         public HttpResponseMessage GetRoles()
         {
-            var roles = _roleService.GetAll()
-                .Select(x => new {x.Id, x.Name})
-                .ToList();
+            IEnumerable<RoleDTO> roles = _roleService.GetAll();
             return Request.CreateResponse(HttpStatusCode.OK, roles);
         }
     }

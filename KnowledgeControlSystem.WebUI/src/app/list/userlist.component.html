@@ -1,11 +1,4 @@
 <div class="container">
-  <!-- <mz-collection>
-  <mz-collection-item *ngFor="let user of users; let userIndex = index">
-    {{user.UserName}}
-      <a routerLink="/userlist" routerLinkActive="active" (click)=deleteUser(user.Id) mz-secondary-content> <i class="material-icons prefix" >delete</i></a>
-      <!src="../../assets/delele.png" -->
-  <!-- </mz-collection-item> -->
-
   <table>
     <thead>
       <tr>
@@ -20,7 +13,8 @@
         <td>{{user.UserName}}</td>
         <td>{{user.Email}}</td>
         <td>
-          <mz-badge *ngFor="let role of user.Roles; let roleIndex = index" [caption]="role" [badgeClass]="'blue'" class="left"></mz-badge>
+          <mz-badge *ngFor="let role of roles" [caption]="role" [badgeClass]="hasRole(user, role) ? 'blue' : 'grey'"
+            class="left" (click)="toggleRole(user, role)"></mz-badge>
         </td>
         <td><a routerLink="/userlist" routerLinkActive="active" (click)=deleteUser(user.Id) mz-secondary-content> <i
               class="material-icons prefix">delete</i></a></td>
