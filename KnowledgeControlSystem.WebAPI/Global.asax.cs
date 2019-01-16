@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace KnowledgeControlSystem.WebAPI
 {
@@ -8,6 +9,7 @@ namespace KnowledgeControlSystem.WebAPI
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            AreaRegistration.RegisterAllAreas();
         }
     }
 }
