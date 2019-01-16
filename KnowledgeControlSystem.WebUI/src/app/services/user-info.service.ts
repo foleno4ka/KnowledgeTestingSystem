@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TokenDto } from '../dto/token-dto.model';
+import { TokenDto } from '../api/dto/token-dto.model';
 
 @Injectable()
 export class UserInfoService {

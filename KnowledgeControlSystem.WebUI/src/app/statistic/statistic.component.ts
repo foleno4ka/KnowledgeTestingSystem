@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TestResultService } from '../services/testResult.service';
-import { TestStatistic } from '../dto/testStatistic.model';
-import { TestService } from '../services/test.service';
-import { TestResult } from '../dto/testResult.model';
-import { UserInfoService } from '../shared/user-info.service';
-import { TestStatisticsService } from '../services/test-statistics.service';
+import { TestResultService } from '../api/service/testResult.service';
+import { TestStatistic } from '../api/dto/testStatistic.model';
+import { TestService } from '../api/service/test.service';
+import { TestResult } from '../api/dto/testResult.model';
+import { UserInfoService } from '../services/user-info.service';
+import { TestStatisticsService } from '../api/service/test-statistics.service';
 
 @Component({
   selector: 'app-statistic',

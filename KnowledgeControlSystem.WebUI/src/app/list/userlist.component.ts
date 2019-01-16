@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
+import { UserService } from '../api/service/user.service';
 import { Router } from '@angular/router';
-import { User } from '../dto/user.model';
+import { User } from '../api/dto/user.model';
 import { subscribeOn } from 'rxjs/operators';
 
 @Component({
@@ -17,9 +17,6 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().then((data: any) => {
       this.users = data as User[];
     })
-    // this.users.forEach(user=>{
-    //   this.userService.de
-    // })
   }
 
   deleteUser(idToDelete: number) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../dto/user.model';
+import { User } from '../../api/dto/user.model';
 import { NgForm, Validators } from '@angular/forms';
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../../api/service/user.service';
 import { ToastrService } from 'ngx-toastr'
 import { EqualValidator } from '../../helpers/register.validator';
 

@@ -1,14 +1,14 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { TestService } from '../services/test.service';
-import { Test } from '../dto/test.model';
+import { TestService } from '../api/service/test.service';
+import { Test } from '../api/dto/test.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/timer";
 import "rxjs/add/operator/finally";
 import "rxjs/add/operator/takeUntil";
 import "rxjs/add/operator/map";
-import { TestResultService } from '../services/testResult.service';
-import { TestResult } from '../dto/testResult.model';
+import { TestResultService } from '../api/service/testResult.service';
+import { TestResult } from '../api/dto/testResult.model';
 
 @Component({
   selector: 'app-test-solve',
@@ -25,8 +25,6 @@ export class TestSolveComponent implements OnInit {
 
   ngOnInit() {
     const id: string = this.route.snapshot.params['id'];
-    this.testService.seconds = 0;
-    this.testService.qnProgress = 0;
 
     this.userAnswersMap = {};
     this.testService.getTestById(id).subscribe(

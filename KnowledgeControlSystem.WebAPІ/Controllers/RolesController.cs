@@ -5,10 +5,10 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
+using KnowledgeControlSystem.Common;
 
 namespace KnowledgeControlSystem.WebAPІ.Controllers
 {
-    [AllowAnonymous]
     public class RolesController : ApiController
     {
         private readonly IService<RoleDTO> _roleService;
@@ -18,7 +18,7 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             _roleService = roleService;
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = KnowledgeRoles.Admin)]
         [HttpGet]
         [Route("api/Roles")]
         public HttpResponseMessage GetRoles()

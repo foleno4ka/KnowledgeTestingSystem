@@ -4,10 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import 'rxjs/add/operator/map';
-
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
-import { UserService } from './shared/user.service';
+import { UserService } from './api/service/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { UserComponent } from './user/user.component';
@@ -16,18 +15,18 @@ import { TestsComponent } from './tests/tests.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './auth/auth.guard';
 import { TestPageComponent } from './test-page/test-page.component';
-import { TestService } from './services/test.service';
+import { TestService } from './api/service/test.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { CategoryService } from './services/category.service';
+import { CategoryService } from './api/service/category.service';
 import { TestSolveComponent } from './test-solve/test-solve.component';
 import { MzCollectionModule, MzRadioButtonModule, MzRadioButtonContainerComponent, MzIconModule, MzCollectionItemComponent } from 'ngx-materialize';
 import { MzBadgeModule, MzValidationModule, MzNavbarModule, MzButtonModule, MzSelectModule, MzInputModule, MzCheckboxModule } from 'ngx-materialize';
-import { TestResultService } from './services/testResult.service';
+import { TestResultService } from './api/service/testResult.service';
 import { UserListComponent } from './list/userlist.component';
 import { StatisticComponent } from './statistic/statistic.component';
-import { UserInfoService } from './shared/user-info.service';
+import { UserInfoService } from './services/user-info.service';
 import { EqualValidator } from './helpers/register.validator';
-import { TestStatisticsService } from './services/test-statistics.service';
+import { TestStatisticsService } from './api/service/test-statistics.service';
 
 @NgModule({
   declarations: [

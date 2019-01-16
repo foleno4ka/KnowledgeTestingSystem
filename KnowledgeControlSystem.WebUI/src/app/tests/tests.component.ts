@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/user.service';
-import { User } from '../dto/user.model';
-import { TestService } from '../services/test.service';
-import { Test } from '../dto/test.model';
-import { UserInfoService } from '../shared/user-info.service';
+import { UserService } from '../api/service/user.service';
+import { User } from '../api/dto/user.model';
+import { TestService } from '../api/service/test.service';
+import { Test } from '../api/dto/test.model';
+import { UserInfoService } from '../services/user-info.service';
 
 @Component({
   selector: 'tests',

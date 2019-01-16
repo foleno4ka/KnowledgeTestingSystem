@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Router } from '@angular/router';
-import { UserService } from '../../shared/user.service';
-import { UserInfoService } from '../../shared/user-info.service';
-import { TokenDto } from '../../dto/token-dto.model';
+import { UserService } from '../../api/service/user.service';
+import { UserInfoService } from '../../services/user-info.service';
+import { TokenDto } from '../../api/dto/token-dto.model';
 
 @Component({
   selector: 'app-sign-in',
