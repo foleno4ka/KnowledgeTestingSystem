@@ -6,12 +6,12 @@
     <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin'])"><a routerLink="/userlist" routerLinkActive="active">Users</a></mz-navbar-item>
     <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin', 'User','Moderator'])"><a routerLink="/statistic"
         routerLinkActive="active">Statistic</a></mz-navbar-item>
-
   </mz-navbar-item-container>
 
   <a href="#" class="brand-logo center">Knowledge Control System</a>
 
   <mz-navbar-item-container [align]="'right'">
+    <mz-navbar-item><a href="http://localhost:56607/Help" target="_blank">Help</a></mz-navbar-item>
     <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin', 'User', 'Moderator'])"><a (click)="logout()">Logout</a></mz-navbar-item>
   </mz-navbar-item-container>
 
