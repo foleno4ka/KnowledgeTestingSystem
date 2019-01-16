@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeControlSystem.DAL"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeControlSystem.BLL", "KnowledgeControlSystem.BLL\KnowledgeControlSystem.BLL.csproj", "{6F1D391C-85EF-406E-9ABD-F93D48D18008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeControlSystem.WebAPІ", "KnowledgeControlSystem.WebAPІ\KnowledgeControlSystem.WebAPІ.csproj", "{ADD4F420-344E-46C8-934E-6E4A999F41B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeControlSystem.WebAPI", "KnowledgeControlSystem.WebAPІ\KnowledgeControlSystem.WebAPI.csproj", "{ADD4F420-344E-46C8-934E-6E4A999F41B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeControlSystem.Common", "KnowledgeControlSystem.Common\KnowledgeControlSystem.Common.csproj", "{6BA10E01-F1F5-43B4-AD1E-C0F9AD5E18D1}"
 EndProject
