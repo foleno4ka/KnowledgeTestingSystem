@@ -139,7 +139,7 @@ namespace KnowledgeControlSystem.BLL.Services
                     {
                         AnswerEntity correctAnswer = question.Answers.First(answer => answer.Correct);
                         if (userAnswers[0] == correctAnswer.Id)
-                            score++;
+                            score += question.score;
                     }
                 }
                 else

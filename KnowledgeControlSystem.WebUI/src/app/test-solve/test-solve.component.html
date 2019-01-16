@@ -4,7 +4,7 @@
   </div>
   <div class="row" *ngFor="let question of test.Questions; let questionIndex=index;">
     <div class="row">
-      <strong class="question">{{ question.Text }} ({{question.Score}})</strong>
+      <strong class="question">{{ question.Text }} ({{question.Score}} {{question.Score > 1 ? 'points' : 'point'}})</strong>
     </div>
     <div *ngIf="question.Type==='MULTIPLE'">
       <div *ngFor="let answer of question.Answers; let answerIndex = index">
