@@ -40,9 +40,6 @@ namespace KnowledgeControlSystem.WebAPІ.Providers
                     {
                         {"role", JsonConvert.SerializeObject(userRoles)}
                     });
-                //identity.AddClaim(new Claim("Email", user.Email));
-                //identity.AddClaim(new Claim("FirstName", user.FirstName));
-                //identity.AddClaim(new Claim("LastName", user.LastName));
                 var ticket = new AuthenticationTicket(identity, additionalData);
                 context.Validated(ticket);
             }

@@ -18,7 +18,11 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         {
             _testResultService = testResultService;
         }
-
+        
+        /// <summary>
+        /// Returns all test results of current user
+        /// </summary>
+        /// <returns></returns>
         [Route("api/TestResults")]
         [HttpGet]
         [Authorize]

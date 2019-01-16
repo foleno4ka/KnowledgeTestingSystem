@@ -17,7 +17,10 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         {
             _statisticService = statisticService;
         }
-
+        /// <summary>
+        /// Returns test statistics of current user
+        /// </summary>
+        /// <returns></returns>
         [Route("api/TestStatistics")]
         [HttpGet]
         [Authorize]
@@ -27,7 +30,10 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             TestStatisticDTO testStatistics = _statisticService.GetStatistics(userId);
             return Request.CreateResponse(HttpStatusCode.OK, testStatistics);
         }
-
+        /// <summary>
+        /// Returns all users statistics for admin/moderator
+        /// </summary>
+        /// <returns></returns>
         [Route("api/AllTestStatistics")]
         [HttpGet]
         [Authorize]

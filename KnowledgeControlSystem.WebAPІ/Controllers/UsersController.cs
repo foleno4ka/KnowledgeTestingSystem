@@ -19,7 +19,10 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         {
             _userService = userService;
         }
-
+        /// <summary>
+        /// Returns all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         [Authorize(Roles = KnowledgeRoles.Admin)]
@@ -29,6 +32,11 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, users);
         }
 
+        /// <summary>
+        /// Creates new user with default role "user"
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("")]
         [HttpPost]
         [AllowAnonymous]
@@ -41,6 +49,11 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Deletes user 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{userId}")]
         [Authorize(Roles = KnowledgeRoles.Admin)]

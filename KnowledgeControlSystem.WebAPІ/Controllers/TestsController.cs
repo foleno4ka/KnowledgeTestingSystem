@@ -21,7 +21,11 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         {
             _testService = testService;
         }
-
+        
+        /// <summary>
+        /// Returns all records
+        /// </summary>
+        /// <returns></returns>
         [Route("")]
         [HttpGet]
         public HttpResponseMessage GetAll()
@@ -70,7 +74,12 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             _testService.Delete(testId);
             return Request.CreateResponse(HttpStatusCode.NoContent, "Test deleted");
         }
-
+        
+        /// <summary>
+        /// Starts test
+        /// </summary>
+        /// <param name="testId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("{testId}/Start")]
         public HttpResponseMessage StartTest(int testId)
@@ -80,6 +89,12 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, testStartTime);
         }
 
+        /// <summary>
+        /// Finishes test and updates test result
+        /// </summary>
+        /// <param name="testId"></param>
+        /// <param name="userAnswers"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("{testId}/Finish")]
         public HttpResponseMessage FinishTest(int testId, Dictionary<int, int[]> userAnswers)

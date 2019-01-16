@@ -17,7 +17,10 @@ namespace KnowledgeControlSystem.WebAPІ.Controllers
         {
             _roleService = roleService;
         }
-
+        /// <summary>
+        /// Returns all roles
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = KnowledgeRoles.Admin)]
         [HttpGet]
         [Route("api/Roles")]
