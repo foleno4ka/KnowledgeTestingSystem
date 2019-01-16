@@ -4,9 +4,9 @@ using System.Net.Http;
 using System.Web.Http;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
-using KnowledgeControlSystem.WebAPІ.Infrastructure;
+using KnowledgeControlSystem.WebAPI.Infrastructure;
 
-namespace KnowledgeControlSystem.WebAPІ.Controllers
+namespace KnowledgeControlSystem.WebAPI.Controllers
 {
     [Authorize]
     public class TestStatisticsController : ApiController

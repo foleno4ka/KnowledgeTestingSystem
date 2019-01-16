@@ -7,7 +7,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json;
 
-namespace KnowledgeControlSystem.WebAPІ.Providers
+namespace KnowledgeControlSystem.WebAPI.Providers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider

@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace KnowledgeControlSystem.WebAPІ
+namespace KnowledgeControlSystem.WebAPI
 {
     public static class WebApiConfig
     {

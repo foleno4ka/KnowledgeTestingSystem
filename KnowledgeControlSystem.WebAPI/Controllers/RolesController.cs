@@ -7,7 +7,7 @@ using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
 using KnowledgeControlSystem.Common;
 
-namespace KnowledgeControlSystem.WebAPІ.Controllers
+namespace KnowledgeControlSystem.WebAPI.Controllers
 {
     public class RolesController : ApiController
     {

@@ -5,7 +5,7 @@ using System.Web.Http;
 using KnowledgeControlSystem.BLL.Interfaces;
 using KnowledgeControlSystem.Common;
 
-namespace KnowledgeControlSystem.WebAPІ.Controllers
+namespace KnowledgeControlSystem.WebAPI.Controllers
 {
     [Authorize(Roles = KnowledgeRoles.Admin)]
     [RoutePrefix("api/Users/{userId}/Roles")]

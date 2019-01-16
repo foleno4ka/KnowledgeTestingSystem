@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Controllers;
 
-namespace KnowledgeControlSystem.WebAPІ
+namespace KnowledgeControlSystem.WebAPI
 {
     public class AuthorizeAttribute : System.Web.Http.AuthorizeAttribute
     {

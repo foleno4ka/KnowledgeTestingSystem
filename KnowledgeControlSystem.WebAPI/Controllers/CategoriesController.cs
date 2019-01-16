@@ -4,7 +4,7 @@ using System.Web.Http.Cors;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
 
-namespace KnowledgeControlSystem.WebAPІ.Controllers
+namespace KnowledgeControlSystem.WebAPI.Controllers
 {
     [RoutePrefix("api/Categories")]
     [Authorize]

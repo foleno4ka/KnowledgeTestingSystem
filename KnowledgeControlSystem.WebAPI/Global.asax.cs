@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Http;
 
-namespace KnowledgeControlSystem.WebAPІ
+namespace KnowledgeControlSystem.WebAPI
 {
     public class WebApiApplication : HttpApplication
     {

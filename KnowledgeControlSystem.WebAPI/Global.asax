@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="KnowledgeControlSystem.WebAPI.WebApiApplication" Language="C#" %>

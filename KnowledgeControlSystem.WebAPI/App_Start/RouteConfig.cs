@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace KnowledgeControlSystem.WebAPІ
+namespace KnowledgeControlSystem.WebAPI
 {
     public class RouteConfig
     {

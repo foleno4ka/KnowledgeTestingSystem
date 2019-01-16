@@ -8,7 +8,7 @@ using KnowledgeControlSystem.BLL.Interfaces;
 using KnowledgeControlSystem.Common;
 using Microsoft.AspNet.Identity;
 
-namespace KnowledgeControlSystem.WebAPІ.Controllers
+namespace KnowledgeControlSystem.WebAPI.Controllers
 {
     [RoutePrefix("api/Users")]
     public class UsersController : ApiController

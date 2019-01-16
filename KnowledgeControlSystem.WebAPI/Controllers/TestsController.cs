@@ -7,9 +7,9 @@ using System.Web.Http.Cors;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
 using KnowledgeControlSystem.Common;
-using KnowledgeControlSystem.WebAPІ.Infrastructure;
+using KnowledgeControlSystem.WebAPI.Infrastructure;
 
-namespace KnowledgeControlSystem.WebAPІ.Controllers
+namespace KnowledgeControlSystem.WebAPI.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Tests")]

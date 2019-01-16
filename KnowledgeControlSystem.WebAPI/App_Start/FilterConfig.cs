@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace KnowledgeControlSystem.WebAPІ
+namespace KnowledgeControlSystem.WebAPI
 {
     public class FilterConfig
     {

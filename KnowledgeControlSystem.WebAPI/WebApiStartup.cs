@@ -1,11 +1,11 @@
-﻿using KnowledgeControlSystem.WebAPІ;
+﻿using KnowledgeControlSystem.WebAPI;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
 
 [assembly: OwinStartup("WebApiStart", typeof(WebApiStartup))]
 
-namespace KnowledgeControlSystem.WebAPІ
+namespace KnowledgeControlSystem.WebAPI
 {
     public partial class WebApiStartup
     {

@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Security.Principal;
 
-namespace KnowledgeControlSystem.WebAPІ.Infrastructure
+namespace KnowledgeControlSystem.WebAPI.Infrastructure
 {
     public static class ControllerHelper
     {
