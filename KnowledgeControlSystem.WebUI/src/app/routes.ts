@@ -7,7 +7,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { TestPageComponent } from './test-page/test-page.component';
 import { TestSolveComponent } from './test-solve/test-solve.component';
 import { UserListComponent } from './list/userlist.component';
-import { StatisticComponent } from './statistic/statistic.component';
+import { CurrentUserStatisticsComponent } from './statistic/current-user/current-user-statistics.component';
+import { AllUsersStatisticsComponent } from './statistic/all-users/all-users-statistics.component';
 
 export const appRoutes: Routes = [
     { path: 'tests', component: TestsComponent, canActivate: [AuthGuard] },
@@ -23,6 +24,7 @@ export const appRoutes: Routes = [
     { path: 'tests', component: TestsComponent },
     { path: 'tests/:id', component: TestPageComponent },
     { path: 'tests/:id/pass', component: TestSolveComponent },
-    { path: 'userlist', component:UserListComponent},
-    { path: 'statistic', component:StatisticComponent}
+    { path: 'userlist', component: UserListComponent },
+    { path: 'mystatistics', component: CurrentUserStatisticsComponent },
+    { path: 'allstatistics', component: AllUsersStatisticsComponent }
 ];

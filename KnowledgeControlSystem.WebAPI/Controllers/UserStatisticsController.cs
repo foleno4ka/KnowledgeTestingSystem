@@ -4,11 +4,11 @@ using System.Net.Http;
 using System.Web.Http;
 using KnowledgeControlSystem.BLL.DTOs;
 using KnowledgeControlSystem.BLL.Interfaces;
+using KnowledgeControlSystem.Common;
 using KnowledgeControlSystem.WebAPI.Infrastructure;
 
 namespace KnowledgeControlSystem.WebAPI.Controllers
 {
-    [Authorize]
     public class TestStatisticsController : ApiController
     {
         private readonly IStatisticService _statisticService;
@@ -36,7 +36,7 @@ namespace KnowledgeControlSystem.WebAPI.Controllers
         /// <returns></returns>
         [Route("api/AllTestStatistics")]
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = KnowledgeRoles.Admin + "," + KnowledgeRoles.Moderator)]
         public HttpResponseMessage GetAllTestStatistics()
         {
             IEnumerable<TestStatisticDTO> testStatistics = _statisticService.GetAllUserStatistics();

@@ -24,8 +24,7 @@ namespace KnowledgeControlSystem.DAL.Repositories
         }
 
         public void Remove(T obj)
-        {
-           
+        {           
             _dbSet.Remove(obj);
         }
 

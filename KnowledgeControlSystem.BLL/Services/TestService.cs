@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using KnowledgeControlSystem.BLL.DTOs;
-using KnowledgeControlSystem.BLL.EntityExtensions;
 using KnowledgeControlSystem.BLL.Exceptions;
 using KnowledgeControlSystem.BLL.Infrastructure;
 using KnowledgeControlSystem.BLL.Interfaces;
@@ -18,6 +16,7 @@ namespace KnowledgeControlSystem.BLL.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        // Another mapper to remove correct answer for non-admin and non-moderators (not implemented)
         IMapper _userMapper;
 
         public TestService(IUnitOfWork _unitOfWork)
@@ -33,9 +32,6 @@ namespace KnowledgeControlSystem.BLL.Services
                     .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
                     .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Text));
 
-
-                //cfg.CreateMap<AnswerEntity, AnswerDTO>().ForMember(dest => dest., opt => opt.Ignore());
-
                 cfg.CreateMap<TestDTO, TestEntity>()
                     .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Questions));
 
@@ -47,7 +43,6 @@ namespace KnowledgeControlSystem.BLL.Services
             {
                 cfg.AddExpressionMapping();
                 cfg.CreateMap<TestEntity, TestDTO>()
-                    // TODO: security bug. Need to remove correct answer;
                     .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Questions));
                 cfg.CreateMap<TestDTO, TestEntity>();
             }).CreateMapper();
@@ -71,14 +66,6 @@ namespace KnowledgeControlSystem.BLL.Services
         {
             TestEntity test = _unitOfWork.Tests.Get(id);
             return _mapper.Map<TestDTO>(test);
-        }
-
-        public TestDTO GetByName(string testName)
-        {
-            TestDTO resultTest = new TestDTO();
-            if (testName != null)
-                resultTest = _mapper.Map<TestDTO>(_unitOfWork.Tests.FindOneBy(test => test.Name == testName));
-            return resultTest;
         }
 
         public IEnumerable<TestDTO> GetAll()
@@ -106,7 +93,7 @@ namespace KnowledgeControlSystem.BLL.Services
                 {
                     TestId = testId,
                     UserId = userId,
-                    StartTime = Convert.ToDateTime(DateTime.Now.ToShortTimeString()),
+                    StartTime = DateTime.Now,
                     EndTime = Convert.ToDateTime(null)
                 };
                 _unitOfWork.TestResults.Create(testResult);

@@ -25,7 +25,6 @@ namespace KnowledgeControlSystem.BLL.Autofac
             builder.RegisterType(typeof(IRoleService)).As(typeof(IService<RoleDTO>));
             builder.RegisterType(typeof(UserService)).As(typeof(IUserService));
 
-
             builder.RegisterType(typeof(KnowledgeUnitOfWork)).As(typeof(IUnitOfWork)).InstancePerLifetimeScope();
             base.Load(builder);
         }

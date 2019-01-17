@@ -4,8 +4,10 @@
     <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin','User','Moderator'])"><a routerLink="/tests"
         routerLinkActive="active">Tests</a></mz-navbar-item>
     <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin'])"><a routerLink="/userlist" routerLinkActive="active">Users</a></mz-navbar-item>
-    <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin', 'User','Moderator'])"><a routerLink="/statistic"
-        routerLinkActive="active">Statistic</a></mz-navbar-item>
+    <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin', 'User','Moderator'])"><a routerLink="/mystatistics"
+        routerLinkActive="active">My Statistics</a></mz-navbar-item>
+    <mz-navbar-item *ngIf="userInfoService.isInRole(['Admin', 'Moderator'])"><a routerLink="/allstatistics"
+      routerLinkActive="active">All Statistics</a></mz-navbar-item>  
   </mz-navbar-item-container>
 
   <a href="#" class="brand-logo center">Knowledge Control System</a>

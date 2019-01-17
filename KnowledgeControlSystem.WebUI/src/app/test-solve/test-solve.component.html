@@ -2,31 +2,36 @@
   <div class="row">
     <h3>{{test.Name}}</h3>
   </div>
-  <div class="row" *ngFor="let question of test.Questions; let questionIndex=index;">
+  <div *ngIf="!testResult">
     <div class="row">
-      <strong class="question">{{ question.Text }} ({{question.Score}} {{question.Score > 1 ? 'points' : 'point'}})</strong>
+      <span id="testCountdown"></span>
     </div>
-    <div *ngIf="question.Type==='MULTIPLE'">
-      <div *ngFor="let answer of question.Answers; let answerIndex = index">
-        <mz-checkbox-container>
-          <input mz-checkbox [label]="answer.Text" id="{{'answerId_' + questionIndex + '_' + answerIndex}}" name="{{'answerId_' + questionIndex}}"
-            type="checkbox" (change)="updateAnswers($event, question.Id, answer.Id)" />
-        </mz-checkbox-container>
+    <div class="row" *ngFor="let question of test.Questions; let questionIndex=index;">
+      <div class="row">
+        <strong class="question">{{ question.Text }} ({{question.Score}} {{question.Score > 1 ? 'points' : 'point'}})</strong>
+      </div>
+      <div *ngIf="question.Type==='MULTIPLE'">
+        <div *ngFor="let answer of question.Answers; let answerIndex = index">
+          <mz-checkbox-container>
+            <input mz-checkbox [label]="answer.Text" id="{{'answerId_' + questionIndex + '_' + answerIndex}}" name="{{'answerId_' + questionIndex}}"
+              type="checkbox" (change)="updateAnswers($event, question.Id, answer.Id)" />
+          </mz-checkbox-container>
+        </div>
+      </div>
+      <div *ngIf="question.Type==='SINGLE'">
+        <div *ngFor="let answer of question.Answers; let answerIndex = index">
+          <mz-radio-button-container>
+            <input mz-radio-button [label]="answer.Text" id="{{'answerId_' + questionIndex + '_' + answerIndex}}" name="{{'answerId_' + questionIndex}}"
+              type="radio" (change)="updateAnswers($event, question.Id, answer.Id)" />
+          </mz-radio-button-container>
+        </div>
       </div>
     </div>
-    <div *ngIf="question.Type==='SINGLE'">
-      <div *ngFor="let answer of question.Answers; let answerIndex = index">
-        <mz-radio-button-container>
-          <input mz-radio-button [label]="answer.Text" id="{{'answerId_' + questionIndex + '_' + answerIndex}}" name="{{'answerId_' + questionIndex}}"
-            type="radio" (change)="updateAnswers($event, question.Id, answer.Id)" />
-        </mz-radio-button-container>
-      </div>
-    </div>
+    <button mz-button (click)="getTestResult()">Завершити тест</button>
   </div>
-  <button mz-button (click)="getTestResult()">Завершити тест</button>
-  <div class="container" *ngIf="testResult">
-    <div class="row">
-      <p>{{testResult.Score}}/{{testResult.TotalScore}}</p>
+  <div *ngIf="testResult">
+    <div class="row z-depth-5 card-panel">
+      <h4 class="center-align">Your score is {{testResult.Score}}/{{testResult.TotalScore}}</h4>
     </div>
   </div>
 </div>

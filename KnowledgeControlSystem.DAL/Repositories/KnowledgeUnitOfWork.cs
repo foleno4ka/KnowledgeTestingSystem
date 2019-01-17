@@ -1,6 +1,5 @@
 ﻿using System;
 using KnowledgeControlSystem.DAL.EF;
-using KnowledgeControlSystem.DAL.Enitties;
 using KnowledgeControlSystem.DAL.Interfaces;
 
 namespace KnowledgeControlSystem.DAL.Repositories
@@ -8,22 +7,23 @@ namespace KnowledgeControlSystem.DAL.Repositories
     public class KnowledgeUnitOfWork : IUnitOfWork
     {
         private readonly KnowledgeDBContext _context;
-        TestRepository _tests;
-        GenericRepository<TestResultEntity> _testResults;
-        GenericRepository<CategoryEntity> _categories;
-        UserRepository _users;
-        RoleRepository _roles;
         private bool _isDisposed;
-        
-        public IGenericRepository<TestEntity> Tests => _tests ?? (_tests = new TestRepository(_context));
-        public IGenericRepository<TestResultEntity> TestResults => _testResults ?? (_testResults = new GenericRepository<TestResultEntity>(_context));
-        public IRoleRepository Roles => _roles ?? (_roles = new RoleRepository(_context));
-        public IUserRepository Users => _users ?? (_users = new UserRepository(_context));
-        public IGenericRepository<CategoryEntity> Categories => _categories ?? (_categories = new GenericRepository<CategoryEntity>(_context));
 
-        public KnowledgeUnitOfWork(KnowledgeDBContext context)
+        public ITestRepository Tests { get; }
+        public ITestResultRepository TestResults { get; }
+        public IRoleRepository Roles { get; }
+        public IUserRepository Users { get; }
+        public ICategoryRepository Categories { get; }
+
+        public KnowledgeUnitOfWork(KnowledgeDBContext context, ITestRepository tests, ITestResultRepository testResults,
+            ICategoryRepository categories, IUserRepository users, IRoleRepository roles)
         {
             _context = context;
+            Tests = tests;
+            TestResults = testResults;
+            Categories = categories;
+            Users = users;
+            Roles = roles;
         }
 
         public void Save()

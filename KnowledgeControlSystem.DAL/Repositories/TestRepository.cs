@@ -2,10 +2,11 @@
 using System.Linq;
 using KnowledgeControlSystem.DAL.EF;
 using KnowledgeControlSystem.DAL.Enitties;
+using KnowledgeControlSystem.DAL.Interfaces;
 
 namespace KnowledgeControlSystem.DAL.Repositories
 {
-    public class TestRepository : GenericRepository<TestEntity>
+    public class TestRepository : GenericRepository<TestEntity>, ITestRepository
     {
         private readonly KnowledgeDBContext _context;
 

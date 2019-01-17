@@ -42,7 +42,7 @@ namespace KnowledgeControlSystem.WebAPI.Controllers
         public HttpResponseMessage PostTest([FromBody] TestDTO addedTest)
         {
             _testService.Create(addedTest);
-            return Request.CreateResponse(HttpStatusCode.OK, "Product added");
+            return Request.CreateResponse(HttpStatusCode.Created, "Product added");
         }
 
         [Route("{testId}")]
@@ -76,10 +76,10 @@ namespace KnowledgeControlSystem.WebAPI.Controllers
         }
         
         /// <summary>
-        /// Starts test
+        /// Starts test (or does nothing if test is already started)
         /// </summary>
         /// <param name="testId"></param>
-        /// <returns></returns>
+        /// <returns>test start time</returns>
         [HttpPost]
         [Route("{testId}/Start")]
         public HttpResponseMessage StartTest(int testId)

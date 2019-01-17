@@ -9,6 +9,7 @@ import "rxjs/add/operator/takeUntil";
 import "rxjs/add/operator/map";
 import { TestResultService } from '../api/service/testResult.service';
 import { TestResult } from '../api/dto/testResult.model';
+import { TimerService } from '../services/timer.service';
 
 @Component({
   selector: 'app-test-solve',
@@ -18,34 +19,36 @@ import { TestResult } from '../api/dto/testResult.model';
 export class TestSolveComponent implements OnInit {
   test: Test;
   userAnswersMap: { [questionKey: number]: number[] };
-  testStartTime: Date;
   testResult: TestResult;
 
-  constructor(private testService: TestService, private testResultService: TestResultService, private route: ActivatedRoute) { }
+  private SecondsInMinutes: number = 60;
+  private MillisecondsInSeconds: number = 1000;
+
+  constructor(private testService: TestService,
+    private testResultService: TestResultService,
+    private route: ActivatedRoute,
+    private timerService: TimerService) { }
 
   ngOnInit() {
     const id: string = this.route.snapshot.params['id'];
 
     this.userAnswersMap = {};
-    this.testService.getTestById(id).subscribe(
-      (data: Test) => {
-        this.test = data;
-        data.Questions.forEach(question => {
-          this.userAnswersMap[question.Id] =new Array();
-        });
+    this.testService.getTestById(id).subscribe((data: Test) => {
+      this.test = data;
+      data.Questions.forEach(question => {
+        this.userAnswersMap[question.Id] = new Array();
       });
+      this.testService.startTest(id).subscribe((data: string) => {
+        let passedMs = new Date().getTime() - new Date(data).getTime();
+        let maxDurationMs = this.test.Duration * this.SecondsInMinutes * this.MillisecondsInSeconds;
+        let leftMs = maxDurationMs - passedMs;
+        if (leftMs < 0) {
+          leftMs = 0;
+        }
+        this.timerService.startTimer(leftMs / this.MillisecondsInSeconds, document.getElementById("testCountdown"));
+      });
+    });
 
-    this.testService.startTest(id).subscribe(
-      (data: any) => {
-        this.testStartTime = data;
-        console.log(this.testStartTime)
-      }
-    );
-  }
-
-  transform(value: number): string {
-    const minutes: number = Math.floor(value / 60);
-    return ('00' + minutes).slice(-2) + ':' + ('00' + Math.floor(value - minutes * 60)).slice(-2);
   }
 
   updateAnswers($event: any, questionId: number, answerId: number) {

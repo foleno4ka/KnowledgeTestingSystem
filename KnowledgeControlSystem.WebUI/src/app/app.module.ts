@@ -23,10 +23,12 @@ import { MzCollectionModule, MzRadioButtonModule, MzRadioButtonContainerComponen
 import { MzBadgeModule, MzValidationModule, MzNavbarModule, MzButtonModule, MzSelectModule, MzInputModule, MzCheckboxModule } from 'ngx-materialize';
 import { TestResultService } from './api/service/testResult.service';
 import { UserListComponent } from './list/userlist.component';
-import { StatisticComponent } from './statistic/statistic.component';
 import { UserInfoService } from './services/user-info.service';
 import { EqualValidator } from './helpers/register.validator';
 import { TestStatisticsService } from './api/service/test-statistics.service';
+import { TimerService } from './services/timer.service';
+import { CurrentUserStatisticsComponent } from './statistic/current-user/current-user-statistics.component';
+import { AllUsersStatisticsComponent } from './statistic/all-users/all-users-statistics.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { TestStatisticsService } from './api/service/test-statistics.service';
     TestPageComponent,
     TestSolveComponent,
     UserListComponent,
-    StatisticComponent, 
+    CurrentUserStatisticsComponent,
+    AllUsersStatisticsComponent,
     EqualValidator
   ],
   imports: [
@@ -59,10 +62,9 @@ import { TestStatisticsService } from './api/service/test-statistics.service';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule,
-    FormsModule
+    ReactiveFormsModule
   ],
-  providers: [UserService, UserInfoService, CategoryService, AuthGuard, TestService, TestResultService, TestStatisticsService,
+  providers: [UserService, UserInfoService, CategoryService, AuthGuard, TestService, TestResultService, TestStatisticsService, TimerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -5,11 +5,9 @@ namespace KnowledgeControlSystem.DAL.Interfaces
 {
  public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<TestEntity> Tests { get; }
-        //IGenericRepository<QuestionEntity> Questions { get; }
-        //IGenericRepository<AnswerEntity> Answers { get; }
-        IGenericRepository<TestResultEntity> TestResults { get; }
-        IGenericRepository<CategoryEntity> Categories { get; }
+        ITestRepository Tests { get; }
+        ITestResultRepository TestResults { get; }
+        ICategoryRepository Categories { get; }
         IRoleRepository Roles { get; }
         IUserRepository Users { get; }
         void Save();

@@ -87,7 +87,6 @@
     <Compile Include="DTOs\TestResultDTO.cs" />
     <Compile Include="DTOs\TestStatisticDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
-    <Compile Include="EntityExtensions\TestEntityExtensions.cs" />
     <Compile Include="Exceptions\InvalidAnswerException.cs" />
     <Compile Include="Exceptions\TestInUseException.cs" />
     <Compile Include="Exceptions\TestTimeRunOutException.cs" />

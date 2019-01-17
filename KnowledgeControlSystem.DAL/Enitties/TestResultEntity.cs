@@ -18,16 +18,16 @@ namespace KnowledgeControlSystem.DAL.Enitties
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual IdentityUserEntity User { get; set; }
-        [Column(TypeName = "datetime2")]
-        public DateTime PassDate { get; set; }
+        
         [Column(TypeName = "datetime2")]
         public DateTime StartTime { get; set; }
+        
         [Column(TypeName = "datetime2")]
         public DateTime EndTime { get; set; }
-        public int Duration { get; set; }
+        
         public double Score { get; set; }
+        
         public int TotalScore { get; set; }
-
 
     }
 }

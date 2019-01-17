@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using KnowledgeControlSystem.Common;
 using KnowledgeControlSystem.DAL.Enitties;
 using KnowledgeControlSystem.DAL.Enitties.IdentityEntities;
 using KnowledgeControlSystem.DAL.Identity;
@@ -11,8 +12,7 @@ namespace KnowledgeControlSystem.DAL.EF
     {
         protected override void Seed(KnowledgeDBContext context)
         {
-            const string adminRoleName = "Admin";
-            string[] roleNames = {adminRoleName, "Moderator", "User"};
+            string[] roleNames = {KnowledgeRoles.Admin, KnowledgeRoles.Moderator, KnowledgeRoles.User};
 
             ApplicationRoleManager roleManager = new ApplicationRoleManager(new ApplicationRoleStore(context));
             foreach (var roleName in roleNames)
@@ -25,7 +25,7 @@ namespace KnowledgeControlSystem.DAL.EF
             {
                 IdentityUserEntity adminUser = new IdentityUserEntity() {UserName = adminUserName};
                 userManager.Create(adminUser, "admin123"); // min password size should be 6 symbols or more
-                userManager.AddToRole(adminUser.Id, adminRoleName);
+                userManager.AddToRole(adminUser.Id, KnowledgeRoles.Admin);
             }
 
             if (!context.Categories.Any())

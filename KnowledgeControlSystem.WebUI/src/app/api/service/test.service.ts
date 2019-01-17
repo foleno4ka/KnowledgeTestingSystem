@@ -36,8 +36,8 @@ export class TestService extends GenericApiService {
     return this.http.get<Test[]>(`${this.rootUrl}/api/Tests`, this.getOptions());
   }
 
-  startTest(testId: string) {
-    return this.http.post(`${this.rootUrl}/api/Tests/${testId}/Start`, null, this.getOptions());
+  startTest(testId: string): Observable<string> {
+    return this.http.post<string>(`${this.rootUrl}/api/Tests/${testId}/Start`, null, this.getOptions());
   }
 
   finishTest(testId: number, userAnswersMap: { [questionKey: number]: number[] }) {

@@ -1,0 +1,22 @@
+<h4 class="center">Test statistics for all users:</h4>
+<div class="container">
+  <table *ngIf="allUserTestStatistics">
+    <thead>
+      <tr>
+        <th>User name</th>
+        <th>Number of passed tests</th>
+        <th>Average score</th>
+        <th>Average time </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let userStatistic of allUserTestStatistics; let testStaisticIndex = index">
+        <td class="center">{{userStatistic.UserName}}</td>
+        <td>{{userStatistic.PassedTestCount}}</td>
+        <td>{{userStatistic.AvgScorePercent}}%</td>
+        <td class="center">{{userStatistic.AvgTimeSeconds}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
